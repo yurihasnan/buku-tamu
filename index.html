@@ -3,70 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buku Tamu Online Google Sheets</title>
+    <title>Buku Tamu Ditjen Bina Pemerintahan Desa</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f6f9; padding: 20px; display: flex; justify-content: center; }
-        .container { background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; }
-        h2 { text-align: center; color: #333; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: #666; font-weight: 600; }
-        input[type="text"], input[type="tel"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        textarea { resize: vertical; height: 80px; }
-        button { width: 100%; background-color: #4CAF50; color: white; padding: 12px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; }
-        button:hover { background-color: #45a049; }
-        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f4f6f9; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .container { 
+            background-color: #ffffff; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            width: 100%; 
+            max-width: 500px; 
+        }
+        .header-area {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .logo-kemendagri {
+            width: 90px; /* Ukuran proporsional untuk logo */
+            height: auto;
+            margin-bottom: 15px;
+        }
+        h2 { 
+            color: #333; 
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.4;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            color: #666; 
+            font-weight: 600; 
+            font-size: 14px;
+        }
+        input[type="text"], input[type="tel"], textarea { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            font-size: 14px;
+        }
+        textarea { 
+            resize: vertical; 
+            height: 80px; 
+        }
+        button { 
+            width: 100%; 
+            background-color: #1a5276; /* Warna biru instansi/formal */
+            color: white; 
+            padding: 12px; 
+            border: none; 
+            border-radius: 4px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            margin-top: 10px;
+        }
+        button:hover { 
+            background-color: #113f5e; 
+        }
+        button:disabled { 
+            background-color: #cccccc; 
+            cursor: not-allowed; 
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Buku Tamu Digital</h2>
+    <!-- Bagian Header: Logo & Judul -->
+    <div class="header-area">
+        <!-- Menggunakan link gambar logo Kemendagri resmi (format PNG transparan) -->
+        <img class="logo-kemendagri" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Badge_of_the_Ministry_of_Home_Affairs_of_the_Republic_of_Indonesia.svg" alt="Logo Kementerian Dalam Negeri">
+        <h2>Buku Tamu<br>Direktorat Jenderal Bina Pemerintahan Desa</h2>
+    </div>
+
+    <!-- Formulir Buku Tamu -->
     <form id="guestBookForm">
         <div class="form-group">
             <label for="nama">Nama Lengkap</label>
-            <input type="text" id="nama" name="nama" required>
+            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required>
         </div>
         <div class="form-group">
-            <label for="telepon">Nomor Telepon</label>
-            <input type="tel" id="telepon" name="telepon" required>
+            <label for="telepon">Nomor Telepon / WhatsApp</label>
+            <input type="tel" id="telepon" name="telepon" placeholder="Contoh: 08123456xxx" required>
         </div>
         <div class="form-group">
             <label for="instansi">Asal Instansi</label>
-            <input type="text" id="instansi" name="instansi" required>
+            <input type="text" id="instansi" name="instansi" placeholder="Nama instansi/organisasi/lembaga" required>
         </div>
         <div class="form-group">
             <label for="tujuan">Tujuan Kunjungan</label>
-            <textarea id="tujuan" name="tujuan" required></textarea>
+            <textarea id="tujuan" name="tujuan" placeholder="Maksud dan tujuan kedatangan" required></textarea>
         </div>
         <button type="submit" id="submitBtn">Kirim Data</button>
     </form>
 </div>
 
 <script>
-    // GANTI Teks di bawah ini dengan URL Web App dari Google Apps Script Anda
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx9MYPUmPDTibds5ofkgTyloB55gkkNnYq-g-mgRbc9g7j6YlymC8gGyKw0t18xpQv7/exec';
+    // PENTING: Ganti teks di bawah ini dengan URL Web App dari Google Apps Script Anda yang baru
+    const scriptURL = 'https://script.google.com/u/0/home/projects/1MDthcbMjn7_ycXTW6bcs61cXgkT2xKct56Cw3fUYMLt5b9nUJeyNMWNo/edit';
     const form = document.getElementById('guestBookForm');
     const btn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         
-        // Mengubah teks tombol agar tamu tahu data sedang diproses
         btn.disabled = true;
         btn.innerHTML = "Mengirim...";
 
-        // Mengirim data ke Google Sheets menggunakan Fetch API
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
                 btn.disabled = false;
                 btn.innerHTML = "Kirim Data";
-                alert("Terima kasih! Data Anda berhasil disimpan ke Google Sheets.");
-                form.reset(); // Mengosongkan form kembali
+                alert("Terima kasih! Data Anda berhasil disimpan.");
+                form.reset(); 
             })
             .catch(error => {
                 btn.disabled = false;
                 btn.innerHTML = "Kirim Data";
-                alert("Waduh, terjadi kesalahan saat mengirim data. Silakan coba lagi.");
+                alert("Terjadi kesalahan saat mengirim data. Silakan coba lagi.");
                 console.error('Error!', error.message);
             });
     });
